@@ -1,0 +1,126 @@
+[DOCUMENT]
+TITLE: Fencing Vision - Sharing and Privacy Requirements
+UID: FV-SHARING-PRIVACY
+
+[GRAMMAR]
+IMPORT_FROM_FILE: @fencing-vision-requirement
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-001
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Private by default
+STATEMENT: Every clip, analysis, source video, and derived artifact shall be private by default.
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-002
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Server-side authorization
+STATEMENT: The system shall verify ownership or an explicit sharing permission on the server for every clip, analysis, artifact, export, and share-link operation.
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-003
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Private storage paths
+STATEMENT: Possession of an internal storage path shall not grant access to stored video or generated artifacts.
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-004
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Authorised media delivery
+STATEMENT: The system shall require an authorised request or a short-lived signed URL to download private video or artifacts.
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-005
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Sensitive log data
+STATEMENT: Logs and user-facing errors shall not expose private media URLs, share tokens, magic links, or credentials.
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-006
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Complete deletion
+STATEMENT: Deleting a clip shall delete or schedule deletion of its source media, derived assets, analyses, exports, and active share links.
+
+[REQUIREMENT]
+UID: REQ-PRIVACY-007
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Review
+TITLE: External tester policy
+STATEMENT: A retention and account-deletion policy shall be defined before external testers are given access to the system.
+
+[REQUIREMENT]
+UID: REQ-SHARE-001
+STATUS: Draft
+SOURCE: CAP-SHARING
+VERIFICATION: Automated test
+TITLE: Scoped share link
+STATEMENT: A clip owner shall be able to create a share link scoped to one clip and one selected analysis.
+
+[REQUIREMENT]
+UID: REQ-SHARE-002
+STATUS: Draft
+SOURCE: CAP-SHARING
+VERIFICATION: Automated test
+TITLE: Authenticated share access
+STATEMENT: The system shall require a share-link recipient to authenticate before revealing clip metadata, media, or analysis results.
+
+[REQUIREMENT]
+UID: REQ-SHARE-003
+STATUS: Draft
+SOURCE: CAP-SHARING
+VERIFICATION: Automated test
+TITLE: Read-only shared view
+STATEMENT: A valid share link shall grant its authenticated recipient read-only access to the scoped clip and selected analysis.
+
+[REQUIREMENT]
+UID: REQ-SHARE-004
+STATUS: Draft
+SOURCE: CAP-SHARING
+VERIFICATION: Automated test
+TITLE: Library isolation
+STATEMENT: A share-link recipient shall not gain access to the clip owner's account, library, other clips, or unselected analyses.
+
+[REQUIREMENT]
+UID: REQ-SHARE-005
+STATUS: Draft
+SOURCE: CAP-SHARING
+VERIFICATION: Automated test
+TITLE: Optional share expiry
+STATEMENT: The clip owner shall be able to assign an optional expiry time to a share link.
+
+[REQUIREMENT]
+UID: REQ-SHARE-006
+STATUS: Draft
+SOURCE: CAP-SHARING
+VERIFICATION: Automated test
+TITLE: Immediate revocation
+STATEMENT: The clip owner shall be able to revoke a share link so it no longer grants access on subsequent requests.
+
+[REQUIREMENT]
+UID: REQ-SHARE-007
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Unguessable share tokens
+STATEMENT: The system shall generate share tokens with sufficient entropy to resist practical guessing.
+
+[REQUIREMENT]
+UID: REQ-SHARE-008
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Secure token storage
+STATEMENT: The system shall store share-token verification material so disclosure of the stored value does not directly disclose an active share token.

@@ -1,0 +1,318 @@
+[DOCUMENT]
+TITLE: Fencing Vision - Analysis Requirements
+UID: FV-ANALYSIS
+
+[GRAMMAR]
+IMPORT_FROM_FILE: @fencing-vision-requirement
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-001
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Asynchronous analysis
+STATEMENT: The system shall process a clip analysis asynchronously without requiring the user to keep an upload request open.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-002
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Analysis lifecycle
+STATEMENT: An analysis shall transition from queued to processing and then to exactly one of completed, unsuitable, or failed.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-003
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Unsuitable result
+STATEMENT: The system shall use the unsuitable state when recording quality or framing prevents a reliable analysis after processing has evaluated the media.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-004
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Failed result
+STATEMENT: The system shall use the failed state for a technical processing failure and shall retain safe user-facing error information separately from internal diagnostics.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-005
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Idempotent job handling
+STATEMENT: The system shall make analysis creation and retry handling idempotent so a retry cannot duplicate or corrupt a result.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-006
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Bounded job execution
+STATEMENT: The system shall apply defined timeouts and bounded retries to each analysis job.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-007
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Temporary media cleanup
+STATEMENT: The system shall remove job-specific temporary media after analysis success, failure, timeout, or cancellation.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-008
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Replaceable analytics implementation
+STATEMENT: The system shall invoke analytics implementations through a stable internal job and result contract.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-009
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Authorised worker media access
+STATEMENT: An analytics worker shall retrieve source media using short-lived authorised access rather than a permanently public URL.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-010
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Immutable analysis versions
+STATEMENT: Re-running a clip shall create a new immutable analysis record without replacing an earlier result.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-011
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Reproducible analysis identity
+STATEMENT: Every analysis shall identify its result-schema version, pipeline name and version, model version, and calculation configuration.
+
+[REQUIREMENT]
+UID: REQ-ANALYSIS-012
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Generic result model
+STATEMENT: The analytics result model shall represent keypoints, events, metrics, observations, and artifacts without embedding a fixed list of fencing faults in the core data model.
+
+[REQUIREMENT]
+UID: REQ-DATA-001
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Source-frame samples
+STATEMENT: The system shall preserve the source frame index, presentation timestamp, and raw keypoint sample for every source video frame.
+
+[REQUIREMENT]
+UID: REQ-DATA-002
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Missing keypoints
+STATEMENT: The system shall represent a missing keypoint with null coordinates rather than zero coordinates and shall not remove its source frame.
+
+[REQUIREMENT]
+UID: REQ-DATA-003
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Detection provenance
+STATEMENT: Every keypoint sample shall retain detection confidence, missing-data state, and any interpolation indicator.
+
+[REQUIREMENT]
+UID: REQ-DATA-004
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Raw detection immutability
+STATEMENT: Interpolation or smoothing used for derived calculations shall not alter the stored raw pose detections.
+
+[REQUIREMENT]
+UID: REQ-DATA-005
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Precise frame timing
+STATEMENT: Analysis of variable-frame-rate media shall use source presentation timestamps rather than assuming equal duration for every frame.
+
+[REQUIREMENT]
+UID: REQ-DATA-006
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Explicit coordinate system
+STATEMENT: Every analytics result shall identify its coordinate origin, axis directions, scale, and units.
+
+[REQUIREMENT]
+UID: REQ-DATA-007
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Fencing-relative coordinates
+STATEMENT: The system shall express forward and upward movement consistently in fencing-relative coordinates regardless of handedness or image-facing direction.
+
+[REQUIREMENT]
+UID: REQ-DATA-008
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Independent movement direction
+STATEMENT: The system shall not infer movement direction solely from the fencer's handedness.
+
+[REQUIREMENT]
+UID: REQ-DATA-009
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Distinct coordinate units
+STATEMENT: The system shall use distinct unit identifiers for pixel, image-normalised, body-normalised, and calibrated coordinates.
+
+[REQUIREMENT]
+UID: REQ-DATA-010
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Derived vector meaning
+STATEMENT: Every derived velocity or acceleration value shall identify its axis or state that it represents vector magnitude.
+
+[REQUIREMENT]
+UID: REQ-DATA-011
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Uncalibrated measurement language
+STATEMENT: The system shall not describe uncalibrated video-derived movement as real-world velocity or acceleration.
+
+[REQUIREMENT]
+UID: REQ-DATA-012
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Stable subject tracking
+STATEMENT: The analytics pipeline shall track the same fencer throughout a clip rather than selecting a new detected person independently in each frame.
+
+[REQUIREMENT]
+UID: REQ-DATA-013
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Ambiguous subject handling
+STATEMENT: The system shall mark a clip unsuitable when subject changes, significant occlusion, or overlapping people prevent reliable tracking of the intended fencer.
+
+[REQUIREMENT]
+UID: REQ-DATA-014
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Shared media timeline
+STATEMENT: Source video, overlays, keypoints, events, and metrics shall share a stable frame-to-timestamp mapping.
+
+[REQUIREMENT]
+UID: REQ-VIEW-001
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Skeleton playback
+STATEMENT: The system shall display video playback with a synchronised skeleton overlay derived from the analysis keypoints.
+
+[REQUIREMENT]
+UID: REQ-VIEW-002
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Synchronised exploration
+STATEMENT: The video cursor, skeleton, charts, observations, and event markers shall remain synchronised during playback and scrubbing.
+
+[REQUIREMENT]
+UID: REQ-VIEW-003
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Correctable fencing context
+STATEMENT: The system shall allow the clip owner to correct inferred handedness, stance, or direction of travel before starting an analysis.
+
+[REQUIREMENT]
+UID: REQ-VIEW-004
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Keypoint motion profiles
+STATEMENT: The system shall present trajectory, velocity, or acceleration profiles for selected keypoints including the weapon wrist, rear hip, front shoulder, and front ankle.
+
+[REQUIREMENT]
+UID: REQ-VIEW-005
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Comparable metric charts
+STATEMENT: The system shall allow a user to choose horizontal, vertical, or total movement and overlay multiple compatible signals on one chart.
+
+[REQUIREMENT]
+UID: REQ-VIEW-006
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Acceleration comparison
+STATEMENT: The system shall allow comparison of the timing and shape of weapon-wrist, rear-hip, and front-shoulder acceleration profiles.
+
+[REQUIREMENT]
+UID: REQ-VIEW-007
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Estimated movement events
+STATEMENT: The system shall display estimated movement initiation, peak acceleration, maximum extension, and front-foot contact events on the video timeline when available.
+
+[REQUIREMENT]
+UID: REQ-VIEW-008
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Exploratory observations
+STATEMENT: The system shall support observations about possible upward wrist movement, torso timing relative to the hips, and early front-foot landing without presenting them as authoritative faults.
+
+[REQUIREMENT]
+UID: REQ-VIEW-009
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Observation evidence
+STATEMENT: Every observation shall provide a plain-language explanation and links to its supporting time range, metric, event, or video frame.
+
+[REQUIREMENT]
+UID: REQ-VIEW-010
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Confidence and quality
+STATEMENT: The system shall show confidence and data-quality warnings with estimated events and observations.
+
+[REQUIREMENT]
+UID: REQ-VIEW-011
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Replacement recording guidance
+STATEMENT: When a clip is unsuitable, the system shall explain how the user can improve a replacement recording.
+
+[REQUIREMENT]
+UID: REQ-VIEW-012
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Analysis comparison
+STATEMENT: The system shall allow a user to compare results produced for the same clip by different pipeline versions or configurations.
+
+[REQUIREMENT]
+UID: REQ-VIEW-013
+STATUS: Draft
+SOURCE: CAP-ANALYSIS
+VERIFICATION: Automated test
+TITLE: Structured result export
+STATEMENT: The system shall allow the clip owner to download raw keypoints and derived metrics in a structured JSON or CSV representation.
