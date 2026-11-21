@@ -1,0 +1,182 @@
+[DOCUMENT]
+TITLE: Fencing Vision - Core Product Requirements
+UID: FV-CORE
+
+[GRAMMAR]
+IMPORT_FROM_FILE: @fencing-vision-requirement
+
+[REQUIREMENT]
+UID: REQ-AUTH-001
+STATUS: Draft
+SOURCE: CAP-ACCESS
+VERIFICATION: Automated test
+TITLE: Authentication required
+STATEMENT: The system shall require an authenticated user for every clip upload, processing, library, export, and sharing operation.
+
+[REQUIREMENT]
+UID: REQ-AUTH-002
+STATUS: Draft
+SOURCE: CAP-ACCESS
+VERIFICATION: Automated test
+TITLE: Passwordless sign-in
+STATEMENT: The system shall allow a user to sign in using a magic link or a supported identity provider without creating a password.
+
+[REQUIREMENT]
+UID: REQ-AUTH-003
+STATUS: Draft
+SOURCE: CAP-ACCESS
+VERIFICATION: Automated test
+TITLE: No guest accounts
+STATEMENT: The system shall not create anonymous or guest accounts or accept guest uploads.
+
+[REQUIREMENT]
+UID: REQ-AUTH-004
+STATUS: Draft
+SOURCE: CAP-ACCESS
+VERIFICATION: Automated test
+TITLE: Session management
+STATEMENT: The system shall allow an authenticated user to inspect and terminate their active session.
+
+[REQUIREMENT]
+UID: REQ-AUTH-005
+STATUS: Draft
+SOURCE: CAP-ACCESS
+VERIFICATION: Automated test
+TITLE: Fencing context
+STATEMENT: The system shall record the user's weapon hand, stance, and direction of travel independently so pose keypoints can be described using fencing-relative terminology.
+
+[REQUIREMENT]
+UID: REQ-CLIP-001
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Recording guidance
+STATEMENT: The system shall present recording guidance describing the framing and recording conditions required for a supported clip.
+
+[REQUIREMENT]
+UID: REQ-CLIP-002
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Clip upload context
+STATEMENT: The system shall allow an authenticated user to upload a clip with an action type, weapon hand, camera view, and optional notes.
+
+[REQUIREMENT]
+UID: REQ-CLIP-003
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Action selection
+STATEMENT: The system shall allow a user to select or trim the portion of an uploaded clip that contains the action to be analysed.
+
+[REQUIREMENT]
+UID: REQ-CLIP-004
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Upload validation
+STATEMENT: The system shall reject clips that exceed supported file-size or duration limits or that do not contain a supported detected media type.
+
+[REQUIREMENT]
+UID: REQ-CLIP-005
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Upload rejection guidance
+STATEMENT: When a clip is rejected, the system shall explain the violated constraint in language suitable for the user.
+
+[REQUIREMENT]
+UID: REQ-CLIP-006
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Private source storage
+STATEMENT: The system shall store original uploaded clips as private assets owned by the uploading user.
+
+[REQUIREMENT]
+UID: REQ-CLIP-007
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Processing state visibility
+STATEMENT: The system shall show whether a clip is uploading, queued, processing, completed, unsuitable for analysis, or failed.
+
+[REQUIREMENT]
+UID: REQ-CLIP-008
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Private clip library
+STATEMENT: The system shall provide each authenticated user with a private library showing their clips, upload dates, thumbnails, processing states, and available analysis versions.
+
+[REQUIREMENT]
+UID: REQ-CLIP-009
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Clip details
+STATEMENT: The system shall provide an owner with a clip detail view containing the clip video, metadata, analyses, and sharing state.
+
+[REQUIREMENT]
+UID: REQ-CLIP-010
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Editable clip metadata
+STATEMENT: The system shall allow an owner to edit a clip's title and notes without uploading the media again.
+
+[REQUIREMENT]
+UID: REQ-CLIP-011
+STATUS: Draft
+SOURCE: CAP-CLIPS
+VERIFICATION: Automated test
+TITLE: Clip deletion
+STATEMENT: The system shall allow an owner to permanently delete a clip and all associated derived assets, analyses, exports, and share links.
+
+[REQUIREMENT]
+UID: REQ-MEDIA-001
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Original media preservation
+STATEMENT: The system shall preserve the original uploaded video separately from transcoded or annotated derivatives.
+
+[REQUIREMENT]
+UID: REQ-MEDIA-002
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Original checksum
+STATEMENT: The system shall calculate the source clip checksum from the original uploaded bytes rather than from a derivative or model output.
+
+[REQUIREMENT]
+UID: REQ-MEDIA-003
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Distinct asset records
+STATEMENT: The system shall represent original media, analysis inputs, annotated media, thumbnails, raw detections, derived results, and exports as distinct assets.
+
+[REQUIREMENT]
+UID: REQ-MEDIA-004
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Asset metadata
+STATEMENT: The system shall record the owner, source clip, creation time, content type, byte size, checksum, and retention state of every stored asset.
+
+[REQUIREMENT]
+UID: REQ-MEDIA-005
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Visible retention
+STATEMENT: The system shall make applicable asset-retention periods visible to the user before automatic expiry can remove an asset.
+
+[REQUIREMENT]
+UID: REQ-MEDIA-006
+STATUS: Draft
+SOURCE: CAP-TRUST
+VERIFICATION: Automated test
+TITLE: Source media metadata
+STATEMENT: The system shall record the source video's dimensions, duration, frame timing, orientation, and any transcoding applied for analysis.
